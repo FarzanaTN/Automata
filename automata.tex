@@ -356,9 +356,91 @@
     \caption{DFA Transition Table}
     \label{tab:dfa_transition}
 \end{table}
+\subsection{Suset construction}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{slide_1_dfa/sub.png}
+    \caption{Caption}
+    \label{fig:placeholder}
+\end{figure}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{State} & \textbf{0} & \textbf{1} \\
+\hline
+$\{A,B,D\}$ (start) & $\{C\}$ & $\{D,E\}$ \\
+\hline
+$\{C\}$ (accept) & $\emptyset$ & $\{C\}$ \\
+\hline
+$\{D,E\}$ (accept) & $\emptyset$ & $\{D,E\}$ \\
+\hline
+$\emptyset$ & $\emptyset$ & $\emptyset$ \\
+\hline
+\end{tabular}
+\caption{DFA Transition Table}
+\end{table}
+\section{Regular expression to FA}
+\subsection{(((0+10)*1)*01*0)*}
+\[
+\begin{array}{c|c|c}
+\text{From} & \text{Input} & \text{To} \\ \hline
+q_{17} & \varepsilon & q_{10}, q_{20} \\
+q_{10} & \varepsilon & q_{7}, q_{11} \\
+q_{7} & \varepsilon & q_{1}, q_{8} \\
+q_{1} & \varepsilon & q_{2}, q_{4} \\
+q_{2} & 0 & q_{3} \\
+q_{3} & \varepsilon & q_{6} \\
+q_{4} & 1 & q_{5} \\
+q_{5} & 0 & q_{6} \\
+q_{6} & \varepsilon & q_{1}, q_{8} \\
+q_{8} & 1 & q_{9} \\
+q_{9} & \varepsilon & q_{7}, q_{11} \\
+q_{11} & 0 & q_{12} \\
+q_{12} & \varepsilon & q_{13} \\
+q_{13} & \varepsilon & q_{14} \\
+q_{13} & 1 & q_{15} \\
+q_{15} & \varepsilon & q_{13} \\
+q_{14} & 0 & q_{16} \\
+q_{16} & \varepsilon & q_{10}, q_{20}
+\end{array}
+\]
+\begin{tikzpicture}[->, node distance=1.8cm, on grid, auto]
+\node[state, initial] (q17) {$q_{17}$};
+\node[state] (q10) [right=of q17] {$q_{10}$};
+\node[state, accepting, right=of q10] (q20) {$q_{20}$};
 
+\path
+(q17) edge[above] node{$\varepsilon$} (q10)
+(q17) edge[bend left, above] node{$\varepsilon$} (q20)
+(q10) edge[loop above] node{$\varepsilon$} ()
+    ;
+    \end{tikzpicture}
+\section{FA to RE}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{pictures/ar1.png}
+    \caption{Caption}
+    \label{fig:placeholder}
+\end{figure}
+P = 0*\\
+Q = 0*11*
 
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{pictures/ar2.png}
+    \caption{Caption}
+    \label{fig:placeholder}
+\end{figure}
+A = ( 0 + 1 + ( 1 ( 1 + 01 )* 00 )*
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{pictures/ar3.png}
+    \caption{Caption}
+    \label{fig:placeholder}
+\end{figure}
+A = ( 0 + 1 ( 1 + 011)* (00+010))*\\
+D = 
 \section{Construct DFA, which accepts set of all strings over {0, 1} which interpreted as binary number is divisible by 3. }
 \begin{center}
     \includegraphics[width=1.3\textwidth]{divisible/3.png} 
@@ -615,7 +697,14 @@ alphabet $\{0,1,2\}$ to accept only those strings that satisfy the following con
 
 Start state: $\{A\}$ \\
 Accepting states: $\{A,B,D\}, \{A,B,C,D\}$
-
+\subsubsection{FA to RE}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{27_incourse/ar_27.png}
+    \caption{Caption}
+    \label{fig:placeholder}
+\end{figure}
+A = ((0+1) + 0 (0+1)*10*1)*
 \subsubsection{DFA Diagram}
 
 \begin{tikzpicture}[
@@ -859,7 +948,14 @@ E      & D & \&     & B & \pounds & A & \$ \\
 \[
 (1 + 2)^{*} \;+\; (1 + 2)^{*} \, 0 \, (1 + 2)^{*} \;+\; (1 + 2)^{*} \, 0 \, (1 + 2)^{*} \, 0 \, (1 + 2)^{*}
 \]
-
+\subsubsection{FA to RE}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{27_incourse/ar_final.png}
+    \caption{Caption}
+    \label{fig:placeholder}
+\end{figure}
+A = ((0+1((0+11*0)1)*(0+11*0)0)
 \section{26 Batch}
 \subsection{DFA that will accept all binary numbers starting with 0 and remainder is always 11 when divisor is 101 (Final 7a)}
 \begin{tikzpicture}[
@@ -1207,4 +1303,3 @@ L = \{\, w \mid w \text{ has an odd number of } a\text{'s and ends with a } b \,
 
 
 \end{document}
-
